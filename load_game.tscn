@@ -1,0 +1,254 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://MediumCabinBold.tres" type="DynamicFont" id=1]
+[ext_resource path="res://character/Spirit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MediumCabin.tres" type="DynamicFont" id=3]
+[ext_resource path="res://scripts/game.gd" type="Script" id=4]
+[ext_resource path="res://LargeCabin.tres" type="DynamicFont" id=5]
+[ext_resource path="res://resources/full-bar.png" type="Texture" id=6]
+[ext_resource path="res://resources/under-bar.png" type="Texture" id=7]
+[ext_resource path="res://resources/small_arrow.png" type="Texture" id=8]
+[ext_resource path="res://resources/small_arrow_down.png" type="Texture" id=9]
+[ext_resource path="res://resources/small_arrow_hover.png" type="Texture" id=10]
+[ext_resource path="res://resources/wait-normal.png" type="Texture" id=11]
+[ext_resource path="res://resources/wait-down.png" type="Texture" id=12]
+[ext_resource path="res://resources/wait-hover.png" type="Texture" id=13]
+[ext_resource path="res://Tiles.tres" type="TileSet" id=14]
+[ext_resource path="res://resources/black-bar.png" type="Texture" id=15]
+[ext_resource path="res://scripts/Exit.gd" type="Script" id=16]
+[ext_resource path="res://scripts/Start.gd" type="Script" id=17]
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+tile_set = ExtResource( 14 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( -196602, 2, 0, -196596, 5, 0, -131062, 1, 0, -2, 0, 0, 2, 1, 0, 5, 2, 0, 65542, 1, 0, 65547, 1, 0, 196606, 0, 0, 131073, 1, 0, 196617, 1, 0, 327680, 4, 0, 327683, 2, 0, 458749, 0, 0, 393226, 0, 0 )
+
+[node name="FieldItems" type="Node2D" parent="."]
+
+[node name="Spirit" parent="." instance=ExtResource( 2 )]
+position = Vector2( 513.947, 301.088 )
+
+[node name="Camera2D" type="Camera2D" parent="Spirit"]
+position = Vector2( 0, 63.4669 )
+current = true
+zoom = Vector2( 1.4, 1.4 )
+
+[node name="VisibilityMask" type="Polygon2D" parent="Spirit"]
+
+[node name="HUD_Controls" type="CanvasLayer" parent="."]
+
+[node name="BottomBock" type="Sprite" parent="HUD_Controls"]
+position = Vector2( 514.416, 504.395 )
+texture = ExtResource( 15 )
+
+[node name="BottomBock2" type="Sprite" parent="HUD_Controls"]
+position = Vector2( 512.746, -55.116 )
+scale = Vector2( 1, -1 )
+texture = ExtResource( 15 )
+
+[node name="MessagesArea" type="RichTextLabel" parent="HUD_Controls"]
+margin_left = 12.5263
+margin_top = 426.895
+margin_right = 663.526
+margin_bottom = 590.895
+custom_fonts/bold_font = ExtResource( 1 )
+custom_fonts/normal_font = ExtResource( 3 )
+text = "I don't know."
+scroll_following = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HopeLabel" type="Label" parent="HUD_Controls"]
+margin_left = 5.26318
+margin_top = 6.31579
+margin_right = 83.2632
+margin_bottom = 42.3158
+custom_fonts/font = ExtResource( 5 )
+text = "Hope:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HopeBar" type="TextureProgress" parent="HUD_Controls"]
+margin_left = 91.0
+margin_top = 4.0
+margin_right = 307.0
+margin_bottom = 44.0
+max_value = 100.0
+value = 10.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FearLabel" type="Label" parent="HUD_Controls"]
+margin_left = 330.526
+margin_top = 5.26318
+margin_right = 408.526
+margin_bottom = 41.2632
+custom_fonts/font = ExtResource( 5 )
+text = "Fear:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FearBar" type="TextureProgress" parent="HUD_Controls"]
+margin_left = 407.842
+margin_top = 6.10526
+margin_right = 623.842
+margin_bottom = 46.1053
+max_value = 100.0
+value = 10.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="WaitBar" type="TextureProgress" parent="HUD_Controls"]
+margin_left = 733.528
+margin_top = 552.255
+margin_right = 949.528
+margin_bottom = 592.255
+max_value = 100.0
+value = 10.0
+texture_under = ExtResource( 7 )
+texture_progress = ExtResource( 6 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EmotionLabel" type="Label" parent="HUD_Controls"]
+margin_left = 652.036
+margin_top = 5.503
+margin_right = 730.036
+margin_bottom = 41.503
+custom_fonts/font = ExtResource( 5 )
+text = "em"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitDistance" type="Label" parent="HUD_Controls"]
+margin_left = 862.092
+margin_top = 4.64561
+margin_right = 940.092
+margin_bottom = 40.6456
+custom_fonts/font = ExtResource( 5 )
+text = "em"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" type="Node2D" parent="HUD_Controls"]
+
+[node name="Right" type="TextureButton" parent="HUD_Controls/Controls"]
+margin_left = 895.0
+margin_top = 431.0
+margin_right = 971.0
+margin_bottom = 511.0
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Down" type="TextureButton" parent="HUD_Controls/Controls"]
+margin_left = 883.0
+margin_top = 514.0
+margin_right = 959.0
+margin_bottom = 600.0
+rect_rotation = 89.4074
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="TextureButton" parent="HUD_Controls/Controls"]
+margin_left = 793.0
+margin_top = 511.0
+margin_right = 870.0
+margin_bottom = 590.0
+rect_rotation = 179.704
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Up" type="TextureButton" parent="HUD_Controls/Controls"]
+margin_left = 799.0
+margin_top = 430.0
+margin_right = 876.0
+margin_bottom = 522.0
+rect_rotation = 269.4
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Wait" type="TextureButton" parent="HUD_Controls/Controls"]
+margin_left = 799.0
+margin_top = 432.0
+margin_right = 883.0
+margin_bottom = 507.0
+texture_normal = ExtResource( 11 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 13 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TurnWait" type="Timer" parent="HUD_Controls"]
+wait_time = 5.0
+one_shot = true
+
+[node name="EndControls" type="Node2D" parent="HUD_Controls"]
+visible = false
+
+[node name="Button" type="Button" parent="HUD_Controls/EndControls"]
+margin_left = 703.147
+margin_top = 420.886
+margin_right = 982.147
+margin_bottom = 462.886
+custom_fonts/font = ExtResource( 5 )
+text = "Help Another Spirit?"
+flat = true
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="HUD_Controls/EndControls"]
+margin_left = 703.147
+margin_top = 482.683
+margin_right = 982.147
+margin_bottom = 524.683
+custom_fonts/font = ExtResource( 5 )
+text = "Exit Game"
+flat = true
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
